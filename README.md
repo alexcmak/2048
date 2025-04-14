@@ -1,6 +1,7 @@
-# SetGame
+# 2048 Game
 
-A simple 1-player Python implemenation of the classic card game SET.
+A simple Python implemenation of the classic card 2048.
+This game is based on [another implementation](https://github.com/DBgirl/PyGames/blob/main/5_2048/2048.py).
 
 ## Requirements
 
@@ -14,26 +15,10 @@ Please read more about [how to install](https://www.pygame.org/wiki/GettingStart
 
 To run this game once you have python and pygame, run something like this in the command line:
 
-`python SETGame.py`
+`python 2048.py`
 
 ## Features
 
-This game displays up to 4 rows of cards. Pick any 3 cards and the program will tell you if the cards satisify the requirements to make a _set_.
-Please read more about the SET game [here](https://en.wikipedia.org/wiki/Set_(card_game)).
+This game can be configured to be any square, not just the usual 4 x 4.
+You can also set the game to be easier if you wish to end the game with a number less than 2048
 
-![screenshot](https://github.com/alexcmak/SETGame/blob/main/images/screen1.png)
-
-- Use left click to select a card
-- Hold right click to get a hint 
-
-## Math
-There is quite a bit of [math](https://www.setgame.com/sites/default/files/teacherscorner/SETPROOF.pdf) involved in this deceptively simple game. I have not used any _discrete math_ since I studied that in college over 30 years ago. Python is a good choice to write a game like this because it already support "12 choose 3" kind of _combination_ math. 
-
-It's a card game, don't over think it, what good is a _proof_ of how many rows you can get but without a set? This is why I am not and never will be a mathemathican.
-
-
-
-## Future Versions
-
-- improved graphics
-- help screen that spell out the rules
