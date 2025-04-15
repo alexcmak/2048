@@ -6,10 +6,11 @@ import random
 # from https://github.com/DBgirl/PyGames/blob/main/5_2048/2048.py
 pygame.init()
 
-DIM = 4  # dimension - number of tiles across and up/down
+DIM = 5  # dimension - number of tiles across and up/down
 TILE_SIZE = 100
 GAP_SIZE = 15
 MARGIN = 20
+WIN_SCORE = 32  # should be power of 2
 
 SCREEN_DIM = DIM * TILE_SIZE + (DIM-1) * GAP_SIZE + 2 * MARGIN
 
@@ -115,7 +116,7 @@ def move_down(board):
 
 def check_win(board):
 	for row in board:
-		if 2048 in row:
+		if WIN_SCORE in row:
 			return True
 	return False
 
@@ -134,7 +135,7 @@ def check_moves_available(board):
 
 def main():
 	screen = pygame.display.set_mode((SCREEN_DIM, SCREEN_DIM))
-	pygame.display.set_caption("2048 Game - Alex Mak")
+	pygame.display.set_caption(str(WIN_SCORE) + " Game - Alex Mak")
 	clock = pygame.time.Clock()
 
 	# list comprehension way to initialize a 2D square array

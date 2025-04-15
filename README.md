@@ -14,12 +14,28 @@ Please read more about [how to install](https://www.pygame.org/wiki/GettingStart
 
 `pip install pygame --pre`
 
+If you have a mac, try this
+
+`pip3 install pygame --pre`
+
 To run this game once you have python and pygame, run something like this in the command line:
 
 `python 2048.py`
 
+For Mac and Linux
+
+`python3 2048.py`
+
 ## Features
 
-This game can be configured to be any square, not just the usual 4 x 4.
-You can also set the game to be easier if you wish to end the game with a number less than 2048
+This game can be configured have a different size, not just the usual 4 x 4.
+You can also set the game to be easier if you wish to end the game with a number less than 2048.
 
+![screenshot](https://github.com/alexcmak/2048/blob/main/images/2048.png)
+
+![screenshot](https://github.com/alexcmak/2048/blob/main/images/32.png)
+
+## Future Versions
+
+* Sound Effects
+* Config screen
