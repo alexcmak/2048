@@ -1,6 +1,6 @@
 # 2048 Game
 
-A simple Python implemenation of the classic game of tiles [2048](https://www.2048.org/).
+A simple Python implementation of the classic game of tiles [2048](https://www.2048.org/).
 
 This game is based on [another implementation](https://github.com/DBgirl/PyGames/blob/main/5_2048/2048.py).
 
