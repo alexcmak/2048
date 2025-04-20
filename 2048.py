@@ -1,18 +1,20 @@
+import sys
 import pygame
 import random
+import pygame_menu
+from pygame_menu import themes
+
 # 2048 game by Alex Mak
 # This is my slightly more readable version of this excellent program.
 # my thanks to the original programmer
 # from https://github.com/DBgirl/PyGames/blob/main/5_2048/2048.py
 pygame.init()
 
-DIM = 5  # dimension - number of tiles across and up/down
+DIM = 4  # dimension - number of tiles across and up/down
 TILE_SIZE = 100
 GAP_SIZE = 15
 MARGIN = 20
-WIN_SCORE = 32  # should be power of 2
-
-SCREEN_DIM = DIM * TILE_SIZE + (DIM-1) * GAP_SIZE + 2 * MARGIN
+WIN_SCORE = 2048  # should be power of 2
 
 BACKGROUND_COLOR = (255, 251, 240)
 EMPTY_TILE_COLOR = (205, 192, 180)
@@ -133,7 +135,8 @@ def check_moves_available(board):
 				return True
 	return False
 
-def main():
+def game():
+	SCREEN_DIM = DIM * TILE_SIZE + (DIM-1) * GAP_SIZE + 2 * MARGIN
 	screen = pygame.display.set_mode((SCREEN_DIM, SCREEN_DIM))
 	pygame.display.set_caption(str(WIN_SCORE) + " Game - Alex Mak")
 	clock = pygame.time.Clock()
@@ -181,5 +184,58 @@ def main():
 
 	pygame.quit()
 
-if __name__ == "__main__":
-	main()
+# ---------------------
+# Menu
+
+difficult_value = "Hard"
+def set_difficulty(value, score):
+    global WIN_SCORE
+    global difficult_value
+    WIN_SCORE = score
+    difficult_value = value[0][0]
+ 
+def start_the_game():
+    game()
+ 
+def level_menu():
+    mainmenu._open(level)
+
+def size_menu():
+    mainmenu._open(size)
+
+def set_size(value, size):
+    global DIM
+    DIM = size
+ 
+def draw_size_update_function(widget, menu):
+    widget.set_title("Size: " + str(DIM))
+
+def draw_level_update_function(widget, menu):
+    widget.set_title("Level: " + difficult_value)
+
+def quit():
+    pygame.quit()
+    sys.exit(0)
+
+pygame.display.set_caption(str(WIN_SCORE) + " Game - Alex Mak")
+surface = pygame.display.set_mode((600, 400))
+mainmenu = pygame_menu.Menu('2048 Game', 600, 400, theme=themes.THEME_SOLARIZED)
+mainmenu.add.button('Play', start_the_game)
+
+size_button = mainmenu.add.button('Size', size_menu)
+size_button.add_draw_callback(draw_size_update_function)
+
+level_button = mainmenu.add.button('Level', level_menu)
+level_button.add_draw_callback(draw_level_update_function)
+
+mainmenu.add.button('Quit', quit)
+ 
+level = pygame_menu.Menu('Select a Difficulty', 600,400, theme=themes.THEME_BLUE)
+level.add.selector('Difficulty :', [('Hard', 2048), ('Easy', 1024), ('Very Easy', 512)], onchange=set_difficulty)
+
+size = pygame_menu.Menu('Select a Size', 600,400, theme=themes.THEME_BLUE)
+size.add.selector('Size :', [('4', 4), ('5', 5), ('6', 6)], onchange=set_size)
+
+mainmenu.mainloop(surface)
+
+
