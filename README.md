@@ -6,17 +6,19 @@ This game is based on [another implementation](https://github.com/DBgirl/PyGames
 
 ## Requirements
 
-You will need **Python 3** and **pygame**
+You will need **Python 3** and **pygame** and **pygame_menu**
 
 Please read more about [how to install](https://www.pygame.org/wiki/GettingStarted) pygame.
 
 **pip** can be tricky to run, pygame can be tricky to install. This may help you:
 
 `pip install pygame --pre`
+`pip install pygame_menu --pre`
 
 If you have a mac, try this
 
 `pip3 install pygame --pre`
+`pip3 install pygame_menu -pre`
 
 To run this game once you have python and pygame, run something like this in the command line:
 
