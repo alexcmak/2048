@@ -13,11 +13,13 @@ Please read more about [how to install](https://www.pygame.org/wiki/GettingStart
 **pip** can be tricky to run, pygame can be tricky to install. This may help you:
 
 `pip install pygame --pre`
+
 `pip install pygame_menu --pre`
 
 If you have a mac, try this
 
 `pip3 install pygame --pre`
+
 `pip3 install pygame_menu -pre`
 
 To run this game once you have python and pygame, run something like this in the command line:
@@ -42,4 +44,3 @@ You can also set the game to be easier if you wish to end the game with a number
 ## Future Versions
 
 * Sound Effects
-* Config screen
