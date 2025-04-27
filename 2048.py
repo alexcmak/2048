@@ -182,10 +182,11 @@ def game():
 		pygame.display.flip()
 		clock.tick(30)
 
-	pygame.quit()
-
 # ---------------------
 # Menu
+
+MENU_WIDTH = 600
+MENU_HEIGHT = 400
 
 difficult_value = "Hard"
 def set_difficulty(value, score):
@@ -196,6 +197,7 @@ def set_difficulty(value, score):
  
 def start_the_game():
     game()
+    pygame.display.set_mode((MENU_WIDTH, MENU_HEIGHT))
  
 def level_menu():
     mainmenu._open(level)
@@ -218,8 +220,8 @@ def quit():
     sys.exit(0)
 
 pygame.display.set_caption(str(WIN_SCORE) + " Game - Alex Mak")
-surface = pygame.display.set_mode((600, 400))
-mainmenu = pygame_menu.Menu('2048 Game', 600, 400, theme=themes.THEME_SOLARIZED)
+surface = pygame.display.set_mode((MENU_WIDTH, MENU_HEIGHT))
+mainmenu = pygame_menu.Menu('2048 Game', MENU_WIDTH, MENU_HEIGHT, theme=themes.THEME_SOLARIZED)
 mainmenu.add.button('Play', start_the_game)
 
 size_button = mainmenu.add.button('Size', size_menu)
@@ -231,7 +233,7 @@ level_button.add_draw_callback(draw_level_update_function)
 mainmenu.add.button('Quit', quit)
  
 level = pygame_menu.Menu('Select a Difficulty', 600,400, theme=themes.THEME_BLUE)
-level.add.selector('Difficulty :', [('Hard', 2048), ('Easy', 1024), ('Very Easy', 512)], onchange=set_difficulty)
+level.add.selector('Difficulty :', [('Hard', 2048), ('Easy', 1024), ('Very Easy', 128)], onchange=set_difficulty)
 
 size = pygame_menu.Menu('Select a Size', 600,400, theme=themes.THEME_BLUE)
 size.add.selector('Size :', [('4', 4), ('5', 5), ('6', 6)], onchange=set_size)
