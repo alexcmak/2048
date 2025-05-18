@@ -150,6 +150,8 @@ def game():
 	won = False
 	lost = False
 
+	win_sound = pygame.mixer.Sound("Sounds/wow.ogg")
+
 	while running:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -174,6 +176,10 @@ def game():
 			text = FONT.render("You Won!", True, (255, 0, 0))
 			text_rect = text.get_rect(center=(SCREEN_DIM // 2, SCREEN_DIM // 2))
 			screen.blit(text, text_rect)
+
+			if(b_sound):
+				pygame.mixer.Sound.play(win_sound)
+				pygame.mixer.music.stop()
 		elif lost:
 			text = FONT.render("You Lost!", True, (255, 0, 0))
 			text_rect = text.get_rect(center=(SCREEN_DIM // 2, SCREEN_DIM // 2))
@@ -215,6 +221,22 @@ def draw_size_update_function(widget, menu):
 def draw_level_update_function(widget, menu):
     widget.set_title("Level: " + difficult_value)
 
+def sound_menu():
+    mainmenu._open(sound)
+
+b_sound = False
+def set_sound(value, sound):
+    global b_sound
+    b_sound = sound;
+
+def draw_sound_update_function(widget, menu):
+
+    if (b_sound):
+         widget.set_title("Sound: On")
+    else:
+        widget.set_title("Sound: Off")
+
+
 def quit():
     pygame.quit()
     sys.exit(0)
@@ -230,6 +252,9 @@ size_button.add_draw_callback(draw_size_update_function)
 level_button = mainmenu.add.button('Level', level_menu)
 level_button.add_draw_callback(draw_level_update_function)
 
+sound_button = mainmenu.add.button('Sound', sound_menu)
+sound_button.add_draw_callback(draw_sound_update_function)
+
 mainmenu.add.button('Quit', quit)
  
 level = pygame_menu.Menu('Select a Difficulty', 600,400, theme=themes.THEME_BLUE)
@@ -237,6 +262,9 @@ level.add.selector('Difficulty :', [('Hard', 2048), ('Easy', 1024), ('Very Easy'
 
 size = pygame_menu.Menu('Select a Size', 600,400, theme=themes.THEME_BLUE)
 size.add.selector('Size :', [('4', 4), ('5', 5), ('6', 6)], onchange=set_size)
+
+sound = pygame_menu.Menu('Sound Effects', 600,400, theme=themes.THEME_BLUE)
+sound.add.selector('Sound:', [('On', True), ('Off', False)], onchange=set_sound)
 
 mainmenu.mainloop(surface)
 
