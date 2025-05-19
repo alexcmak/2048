@@ -149,6 +149,9 @@ def game():
 	running = True
 	won = False
 	lost = False
+	global b_sound
+
+	l_sound = b_sound
 
 	win_sound = pygame.mixer.Sound("Sounds/wow.ogg")
 
@@ -177,9 +180,11 @@ def game():
 			text_rect = text.get_rect(center=(SCREEN_DIM // 2, SCREEN_DIM // 2))
 			screen.blit(text, text_rect)
 
-			if(b_sound):
+			if(l_sound):  # play just once
 				pygame.mixer.Sound.play(win_sound)
 				pygame.mixer.music.stop()
+				l_sound = False 
+
 		elif lost:
 			text = FONT.render("You Lost!", True, (255, 0, 0))
 			text_rect = text.get_rect(center=(SCREEN_DIM // 2, SCREEN_DIM // 2))
@@ -224,7 +229,7 @@ def draw_level_update_function(widget, menu):
 def sound_menu():
     mainmenu._open(sound)
 
-b_sound = False
+b_sound = True
 def set_sound(value, sound):
     global b_sound
     b_sound = sound;
